@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+     form {
+    text-align: right;
+    width: 301px;
+}
+        #signupform label {
+            display: block;
+            margin-bottom:20px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+ <h1>User Sign Up Form</h1>
+
+</header>
+<div class="container">
+
+
+<form method="post" id="signupform" action="signup">
+<label>UserName:
+<input type="text" name="username" value="{{output['username']}}">
+{{errormap['username']}}
+</label>
+<label>Password:
+<input type="password" name="password">
+{{errormap['password']}}
+</label>
+<label>Confirm password:
+<input type="password" name="confirmpass">
+{{errormap['confirmpassword']}}
+</label>
+<label>email(optional):
+<input type="email" name="email" value="{{output['email']}}">
+{{errormap['email']}}
+</label>
+<input type="submit">
+
+</form>
+
+</div>
+</body>
+</html>
