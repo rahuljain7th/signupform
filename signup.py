@@ -40,7 +40,8 @@ class SignupForm(Handler):
         if errormap:
             self.render('index.html',errormap=errormap,output={'username':username,'email':email})
         else:
-            self.render('welcome.html',output={'username':username,'email':email})
+            self.redirect('/welcome?username='+username)
+    
     def validateUsername(self,username,errormap):
         USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
         logging.debug("Test Vlaid User %s",USER_RE.match(username))
@@ -62,7 +63,11 @@ class SignupForm(Handler):
         if email and not EMAIL_RE.match(email):
             errormap['email']="Email is Invalid"
         
-    
+class WelcomeHandler(Handler):
+    def get(self):
+        username = self.request.get('username')
+        self.render('welcome.html',username=username)
+
 app = webapp2.WSGIApplication([
-('/signup', SignupForm),
+('/signup', SignupForm),('/welcome', WelcomeHandler),
 ], debug=True)
